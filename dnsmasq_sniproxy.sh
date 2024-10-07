@@ -335,6 +335,10 @@ install_sniproxy(){
                 download /tmp/sniproxy-0.6.1-1.el8.x86_64.rpm https://github.com/myxuchangbin/dnsmasq_sniproxy_install/raw/master/sniproxy/sniproxy-0.6.1-1.el8.x86_64.rpm
                 error_detect_depends "yum -y install /tmp/sniproxy-0.6.1-1.el8.x86_64.rpm"
                 rm -rf /tmp/sniproxy-0.6.1-1.el8.x86_64.rpm
+            elif [[ ${bit} = "aarch64" ]]; then
+                download /tmp/sniproxy-0.6.0.el7.aarch64.rpm https://github.com/zhouh047/dnsmasq_sniproxy_install/raw/refs/heads/dnsmasq_sniproxy_aarch64/sniproxy/sniproxy-0.6.0.el7.aarch64.rpm
+                error_detect_depends "yum -y install /tmp/sniproxy-0.6.0.el7.aarch64.rpm"
+                rm -rf /tmp/sniproxy-0.6.0.el7.aarch64.rpm
             else
                 echo -e "${red}暂不支持${bit}内核，请使用编译模式安装！${plain}" && exit 1
             fi
@@ -363,6 +367,10 @@ install_sniproxy(){
                 download /tmp/sniproxy_0.6.1_amd64.deb https://github.com/myxuchangbin/dnsmasq_sniproxy_install/raw/master/sniproxy/sniproxy_0.6.1_amd64.deb
                 error_detect_depends "dpkg -i --no-debsig /tmp/sniproxy_0.6.1_amd64.deb"
                 rm -rf /tmp/sniproxy_0.6.1_amd64.deb
+            elif [[ ${bit} = "aarch64" ]]; then
+                download /tmp/sniproxy_0.6.0_arm64.deb https://github.com/zhouh047/dnsmasq_sniproxy_oneclick_install/raw/refs/heads/main/sniproxy/sniproxy_0.6.0_arm64.deb
+                error_detect_depends "dpkg -i --no-debsig /tmp/sniproxy_0.6.0_arm64.deb"
+                rm -rf /tmp/sniproxy_0.6.0_arm64.deb
             else
                 echo -e "${red}暂不支持${bit}内核，请使用编译模式安装！${plain}" && exit 1
             fi
