@@ -264,16 +264,18 @@ compile_dnsmasq(){
 install_dnsmasq(){
     netstat -a -n -p | grep LISTEN | grep -P "\d+\.\d+\.\d+\.\d+:53\s+" > /dev/null && echo -e "[${red}Error${plain}] required port 53 already in use\n" && exit 1
     echo "安装Dnsmasq..."
-    if check_sys packageManager yum; then
-        error_detect_depends "yum -y install dnsmasq"
-        if centosversion 6; then
-            compile_dnsmasq
-            yes|cp -f /tmp/dnsmasq-2.90/src/dnsmasq /usr/sbin/dnsmasq && chmod +x /usr/sbin/dnsmasq
+    if [[ ${fastmode} = "1" ]]; then
+        if check_sys packageManager yum; then
+            if centosversion 6; then
+                compile_dnsmasq
+                yes|cp -f /tmp/dnsmasq-2.90/src/dnsmasq /usr/sbin/dnsmasq && chmod +x /usr/sbin/dnsmasq
+            else
+                error_detect_depends "yum -y install dnsmasq"
+            fi
+        elif check_sys packageManager apt; then
+            error_detect_depends "apt -y install dnsmasq"
         fi
-    elif check_sys packageManager apt; then
-        error_detect_depends "apt -y install dnsmasq"
-    fi
-    if [[ ${fastmode} = "0" ]]; then
+    elif [[ ${fastmode} = "0" ]]; then
         compile_dnsmasq
         yes|cp -f /tmp/dnsmasq-2.90/src/dnsmasq /usr/sbin/dnsmasq && chmod +x /usr/sbin/dnsmasq
     fi
