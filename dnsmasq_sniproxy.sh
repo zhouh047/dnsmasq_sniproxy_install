@@ -170,7 +170,12 @@ install_dependencies(){
     if check_sys packageManager yum; then
         echo -e "[${green}Info${plain}] Checking the EPEL repository..."
         if [ ! -f /etc/yum.repos.d/epel.repo ]; then
-            yum install -y epel-release > /dev/null 2>&1
+            if centosversion 8; then
+                yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+                yum repolist|grep epel
+           else
+                yum install -y epel-release > /dev/null 2>&1
+           fi
         fi
         [ ! -f /etc/yum.repos.d/epel.repo ] && echo -e "[${red}Error${plain}] Install EPEL repository failed, please check it." && exit 1
         [ ! "$(command -v yum-config-manager)" ] && yum install -y yum-utils > /dev/null 2>&1
