@@ -6,7 +6,7 @@
 
 * 用途：让无法观看流媒体的VPS可以观看（前提：VPS中要有一个是能观看流媒体的）。
 
-* 特性：脚本默认解锁`Netflix Hulu HBO`[等](https://github.com/myxuchangbin/dnsmasq_sniproxy_install/blob/master/proxy-domains.txt)，如需增删流媒体域名请编辑文件`/etc/dnsmasq.d/custom_netflix.conf`和`/etc/sniproxy.conf`
+* 特性：脚本默认解锁`Netflix Hulu HBO`[等](https://github.com/zhouh047/dnsmasq_sniproxy_install/blob/dnsmasq_sniproxy_aarch64/proxy-domains.txt)，如需增删流媒体域名请编辑文件`/etc/dnsmasq.d/custom_netflix.conf`和`/etc/sniproxy.conf`
 
 * 脚本支持系统：CentOS6+, Debian8+, Ubuntu16+
     * 理论上支持上述系统及不限制虚拟化类型，如有问题请反馈
@@ -28,17 +28,17 @@
 
 ### 快速安装（推荐）：
 ``` Bash
-wget --no-check-certificate -O dnsmasq_sniproxy.sh https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/dnsmasq_sniproxy.sh && bash dnsmasq_sniproxy.sh -f
+wget --no-check-certificate -O dnsmasq_sniproxy.sh https://raw.githubusercontent.com/zhouh047/dnsmasq_sniproxy_install/refs/heads/dnsmasq_sniproxy_aarch64/dnsmasq_sniproxy.sh && bash dnsmasq_sniproxy.sh -f
 ```
 
 ### 普通安装：
 ``` Bash
-wget --no-check-certificate -O dnsmasq_sniproxy.sh https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/dnsmasq_sniproxy.sh && bash dnsmasq_sniproxy.sh -i
+wget --no-check-certificate -O dnsmasq_sniproxy.sh https://raw.githubusercontent.com/zhouh047/dnsmasq_sniproxy_install/refs/heads/dnsmasq_sniproxy_aarch64/dnsmasq_sniproxy.sh && bash dnsmasq_sniproxy.sh -i
 ```
 
 ### 卸载方法：
 ``` Bash
-wget --no-check-certificate -O dnsmasq_sniproxy.sh https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/dnsmasq_sniproxy.sh && bash dnsmasq_sniproxy.sh -u
+wget --no-check-certificate -O dnsmasq_sniproxy.sh https://raw.githubusercontent.com/zhouh047/dnsmasq_sniproxy_install/refs/heads/dnsmasq_sniproxy_aarch64/dnsmasq_sniproxy.sh && bash dnsmasq_sniproxy.sh -u
 ```
 
 ### 使用方法：
