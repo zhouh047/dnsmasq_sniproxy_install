@@ -280,10 +280,9 @@ install_dnsmasq(){
     [ ! -f /usr/sbin/dnsmasq ] && echo -e "[${red}Error${plain}] 安装dnsmasq出现问题，请检查." && exit 1
     download /etc/dnsmasq.d/custom_netflix.conf https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/dnsmasq.conf
     download /tmp/proxy-domains.txt https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/proxy-domains.txt
-    for domain in $(cat /tmp/proxy-domains.txt); do
-        printf "address=/${domain}/${publicip}\n"\
-        | tee -a /etc/dnsmasq.d/custom_netflix.conf > /dev/null 2>&1
-    done
+    while read -r domain; do
+    printf "address=/${domain}/${publicip}\n" >> /etc/dnsmasq.d/custom_netflix.conf
+    done < /tmp/proxy-domains.txt
     [ "$(grep -x -E "(conf-dir=/etc/dnsmasq.d|conf-dir=/etc/dnsmasq.d,.bak|conf-dir=/etc/dnsmasq.d/,\*.conf|conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig)" /etc/dnsmasq.conf)" ] || echo -e "\nconf-dir=/etc/dnsmasq.d" >> /etc/dnsmasq.conf
     echo "启动 Dnsmasq 服务..."
     if check_sys packageManager yum; then
@@ -368,7 +367,7 @@ install_sniproxy(){
                 error_detect_depends "dpkg -i --no-debsig /tmp/sniproxy_0.6.1_amd64.deb"
                 rm -rf /tmp/sniproxy_0.6.1_amd64.deb
             elif [[ ${bit} = "aarch64" ]]; then
-                download /tmp/sniproxy_0.6.0_arm64.deb https://github.com/zhouh047/dnsmasq_sniproxy_oneclick_install/raw/refs/heads/main/sniproxy/sniproxy_0.6.0_arm64.deb
+                download /tmp/sniproxy_0.6.0_arm64.deb https://github.com/zhouh047/dnsmasq_sniproxy_install/raw/refs/heads/dnsmasq_sniproxy_aarch64/sniproxy/sniproxy_0.6.0_arm64.deb
                 error_detect_depends "dpkg -i --no-debsig /tmp/sniproxy_0.6.0_arm64.deb"
                 rm -rf /tmp/sniproxy_0.6.0_arm64.deb
             else
