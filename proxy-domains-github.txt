@@ -25,4 +25,9 @@ amazonaws.com
 npm.community
 npmjs.com
 npmjs.org
-spiritlhl.top
+dl.lamp.sh
+filedown.me
+bintray.com
+cdn.jsdelivr.net
+fd.spiritlhl.top
+githubapi.spiritlhl.top
