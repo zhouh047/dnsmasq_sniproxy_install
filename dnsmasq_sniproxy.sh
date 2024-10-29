@@ -286,7 +286,7 @@ install_dnsmasq(){
     fi
     [ ! -f /usr/sbin/dnsmasq ] && echo -e "[${red}Error${plain}] 安装dnsmasq出现问题，请检查." && exit 1
     download /etc/dnsmasq.d/custom_netflix.conf https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/dnsmasq.conf
-    download /tmp/proxy-domains.txt https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/proxy-domains.txt
+    download /tmp/proxy-domains.txt https://raw.githubusercontent.com/zhouh047/dnsmasq_sniproxy_install/refs/heads/dnsmasq_sniproxy_aarch64/proxy-domains.txt
     while read -r domain; do
     printf "address=/${domain}/${publicip}\n" >> /etc/dnsmasq.d/custom_netflix.conf
     done < /tmp/proxy-domains.txt
@@ -391,7 +391,7 @@ install_sniproxy(){
     fi
     [ ! -f /usr/sbin/sniproxy ] && echo -e "[${red}Error${plain}] 安装Sniproxy出现问题，请检查." && exit 1
     download /etc/sniproxy.conf https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/sniproxy.conf
-    download /tmp/sniproxy-domains.txt https://raw.githubusercontent.com/myxuchangbin/dnsmasq_sniproxy_install/master/proxy-domains.txt
+    download /tmp/sniproxy-domains.txt https://raw.githubusercontent.com/zhouh047/dnsmasq_sniproxy_install/refs/heads/dnsmasq_sniproxy_aarch64/proxy-domains.txt
     sed -i -e 's/\./\\\./g' -e 's/^/    \.\*/' -e 's/$/\$ \*/' /tmp/sniproxy-domains.txt || (echo -e "[${red}Error:${plain}] Failed to configuration sniproxy." && exit 1)
     sed -i '/table {/r /tmp/sniproxy-domains.txt' /etc/sniproxy.conf || (echo -e "[${red}Error:${plain}] Failed to configuration sniproxy." && exit 1)
     if [ ! -e /var/log/sniproxy ]; then
