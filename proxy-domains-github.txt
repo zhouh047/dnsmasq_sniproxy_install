@@ -29,5 +29,5 @@ dl.lamp.sh
 filedown.me
 bintray.com
 cdn.jsdelivr.net
-fd.spiritlhl.top
-githubapi.spiritlhl.top
+spiritlhl.top
+spiritlhl.net
