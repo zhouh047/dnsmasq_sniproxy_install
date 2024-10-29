@@ -31,3 +31,5 @@ bintray.com
 cdn.jsdelivr.net
 spiritlhl.top
 spiritlhl.net
+debian.org
+ubuntu.com
