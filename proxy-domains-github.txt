@@ -33,6 +33,3 @@ spiritlhl.top
 spiritlhl.net
 debian.org
 ubuntu.com
-compose-spec.io
-docker.com
-docker.io
