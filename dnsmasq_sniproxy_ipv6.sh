@@ -392,7 +392,7 @@ install_sniproxy(){
         [ ! -f /etc/systemd/system/sniproxy.service ] && echo -e "[${red}Error${plain}] 下载Sniproxy启动文件出现问题，请检查." && exit 1
     fi
     [ ! -f /usr/sbin/sniproxy ] && echo -e "[${red}Error${plain}] 安装Sniproxy出现问题，请检查." && exit 1
-    download /etc/sniproxy.conf https://github.com/zhouh047/dnsmasq_sniproxy_install/blob/dnsmasq_sniproxy_aarch64/sniproxy-ipv6.conf
+    download /etc/sniproxy.conf https://raw.githubusercontent.com/zhouh047/dnsmasq_sniproxy_install/refs/heads/dnsmasq_sniproxy_aarch64/sniproxy-ipv6.conf
     download /tmp/sniproxy-domains.txt https://raw.githubusercontent.com/zhouh047/dnsmasq_sniproxy_install/refs/heads/dnsmasq_sniproxy_aarch64/proxy-domains-github.txt
     sed -i -e 's/\./\\\./g' -e 's/^/    \.\*/' -e 's/$/\$ \*/' /tmp/sniproxy-domains.txt || (echo -e "[${red}Error:${plain}] Failed to configuration sniproxy." && exit 1)
     sed -i '/table {/r /tmp/sniproxy-domains.txt' /etc/sniproxy.conf || (echo -e "[${red}Error:${plain}] Failed to configuration sniproxy." && exit 1)
